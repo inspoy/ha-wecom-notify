@@ -42,7 +42,6 @@ class WeComNotifyService(BaseNotificationService):
     def send_message(self, message="", **kwargs):
         """Send a message to a work weixin."""
         _LOGGER.info("sending message: %s", message)
-        _LOGGER.warn("url: %s, data:", self._api_url, json.dumps(kwargs))
         bodyJson = {
             "title": kwargs.get(ATTR_TITLE) or "",
             "desc": message or "",
@@ -54,4 +53,6 @@ class WeComNotifyService(BaseNotificationService):
             "Push-Key": self._push_key,
         })
         result = resp.json()
-        _LOGGER.warn("resp: %s", result)
+        code = result['retCode']
+        if code != 0:
+            _LOGGER.error("send message failed: %s", result['msg'])
