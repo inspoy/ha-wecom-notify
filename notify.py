@@ -40,6 +40,9 @@ class WeComNotifyService(BaseNotificationService):
         pass
 
     def send_message(self, message="", **kwargs):
+        """Send a message to a work weixin."""
+        _LOGGER.info("sending message: %s", message)
+        _LOGGER.debug(json.dumps(kwargs))
         resp = requests.post(self._api_url, json={
             "title": kwargs.get(ATTR_TITLE) or "",
             "desc": message or "",
