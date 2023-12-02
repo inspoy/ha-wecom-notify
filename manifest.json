@@ -1,0 +1,7 @@
+{
+    "domain": "ha-wecom-notify",
+    "name": "Notify to Work WeChat, for private use only",
+    "version": "1.0.0",
+    "integration_type": "service",
+    "iot_class": "cloud_push"
+}
